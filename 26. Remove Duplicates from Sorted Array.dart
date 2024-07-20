@@ -7,12 +7,25 @@ void main() {
 class Solution {
   int removeDuplicates(List<int> nums) {
     int j = 1;
-    for(int i = 1; i < nums.length; i++) {
-      if(nums[i-1] != nums[i]) {
-        nums[j] = nums[i];
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] != nums[j]) {
         j++;
       }
+      nums[j] = nums[i];
     }
     return j;
   }
 }
+
+// class Solution {
+//   int removeDuplicates(List<int> nums) {
+//     int j = 1;
+//     for(int i = 1; i < nums.length; i++) {
+//       if(nums[i-1] != nums[i]) {
+//         nums[j] = nums[i];
+//         j++;
+//       }
+//     }
+//     return j;
+//   }
+// }
