@@ -12,32 +12,56 @@ void main(List<String> args) {
 }
 
 class Solution {
-  String countAndSay(int n) {
-    String res = '';
-    int i = 1;
-    while (i++ <= n) {
-      res = _count(res);
+  String countAndSay(final int n) {
+    String countAndSay = '1';
+    for (int i = 1; i < n; i++) {
+      countAndSay = _countAndSay(countAndSay);
     }
-    return res;
+    return countAndSay;
   }
 
-  String _count(String str) {
-    if (str.isEmpty) {
-      return '1';
-    }
+  String _countAndSay(final String string) {
+    int count = 1;
     String countAndSay = '';
-    int count = 0, frequency = 0;
-    while (count < str.length) {
-      if (str[frequency] != str[count]) {
-        countAndSay += '${count-frequency}${str[frequency]}';
-        frequency = count;
+    for (int i = 1; i < string.length; i++) {
+      if (string[i-1] != string[i]) {
+        countAndSay += '$count${string[i-1]}';
+        count = 0;
       }
       count++;
     }
-    countAndSay += '${count-frequency}${str[frequency]}';
+    countAndSay += '$count${string[string.length-1]}';
     return countAndSay;
   }
 }
+
+// class Solution {
+//   String countAndSay(int n) {
+//     String res = '';
+//     int i = 1;
+//     while (i++ <= n) {
+//       res = _count(res);
+//     }
+//     return res;
+//   }
+//
+//   String _count(String str) {
+//     if (str.isEmpty) {
+//       return '1';
+//     }
+//     String countAndSay = '';
+//     int count = 0, frequency = 0;
+//     while (count < str.length) {
+//       if (str[frequency] != str[count]) {
+//         countAndSay += '${count-frequency}${str[frequency]}';
+//         frequency = count;
+//       }
+//       count++;
+//     }
+//     countAndSay += '${count-frequency}${str[frequency]}';
+//     return countAndSay;
+//   }
+// }
 
 // class Solution {
 //   String countAndSay(int n) {
