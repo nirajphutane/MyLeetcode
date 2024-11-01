@@ -1,54 +1,78 @@
 
 void main() {
-  ListNode? listNode = ListNode(5, ListNode(4, ListNode(3, ListNode(2, ListNode(1)))));
-  int n = 5;
-  listNode = Solution().removeNthFromEnd(listNode, n);
-  while(listNode != null) {
-    print(listNode.val);
-    listNode = listNode.next;
+  for (int i = 0; i <= 5; i++) {
+    print('$i: ${Solution().removeNthFromEnd(ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5))))), i)}');
   }
+  print(Solution().removeNthFromEnd(ListNode(1), 1).toString());
+  print(Solution().removeNthFromEnd(ListNode(1, ListNode(2)), 1).toString());
 }
 
 class ListNode {
   int val;
   ListNode? next;
   ListNode([this.val = 0, this.next]);
+
+  @override
+  String toString() {
+    ListNode? head = this;
+    String list = '';
+    list += 'head --> ';
+    while (head != null) {
+      list += '${head.val} --> ';
+      head = head.next;
+    }
+    list += 'null';
+    return list;
+  }
 }
 
 class Solution {
   ListNode? removeNthFromEnd(ListNode? head, int n) {
-
-    if(head?.next == null) {
-      return null;
-    } else {
-      // 1. Calculate length of LinkedList
-      ListNode? listNode = head;
-      int length = 0;
-      while(listNode != null) {
-        length++;
-        listNode = listNode.next;
-      }
-
-      // 2. Find position from star
-      int position = length - n;
-
-      // 3. Special case for first position
-      if(n == length) {
-        return head?.next;
-      }
-
-      // 4. Travers up to position
-      int index = 1;
-      listNode = head;
-      while(index < position) {
-        head = head?.next;
-        index++;
-      }
-
-      //5. Delete it
-      head?.next = head.next?.next;
-
-      return listNode;
+    ListNode? headNode = head;
+    int length = 0;
+    while (headNode != null) {
+      length++;
+      headNode = headNode.next;
     }
+
+    if (n == length) {
+      head = head?.next;
+      return head;
+    }
+
+    headNode = head;
+    int i = 1;
+    while (i < length-n) {
+      headNode = headNode?.next;
+      i++;
+    }
+
+    headNode?.next = headNode.next?.next;
+
+    return head;
   }
 }
+
+// ListNode? removeNthFromEnd(ListNode? head, int n) {
+//   ListNode? current = head;
+//
+//   int length = 0;
+//   while (current != null) {
+//     length++;
+//     current = current.next;
+//   }
+//   length = length - n;
+//
+//   if (length == 0) {
+//     return head?.next;
+//   }
+//
+//   current = head;
+//   int i = 0;
+//   while (i < length-1) {
+//     current = current?.next;
+//     i++;
+//   }
+//   current?.next = current.next?.next;
+//   return head;
+// }

@@ -1,25 +1,29 @@
 
 void main() {
-  print(Solution().mySqrt(1));  // 1
   print(Solution().mySqrt(4));  // 2
   print(Solution().mySqrt(8));  // 2
-  print(Solution().mySqrt(17)); // 4
+  print(Solution().mySqrt(9));  // 3
+  print(Solution().mySqrt(24)); // 4
+  print(Solution().mySqrt(25)); // 5
+  print(Solution().mySqrt(26)); // 5
 }
 
 class Solution {
   int mySqrt(final int x) {
-    int sqrt = 1;
-    int l = 0, r = x;
-    while (l <= r) {
-      final int m = (l + r) ~/ 2;
-      final int square = m * m;
+    int sqrt = 1, low = 0, high = x;
+    while (low <= high) {
+      final int mid = (low + high) ~/2;
+      final int square = mid * mid;
       if (square == x) {
-        return m;
-      } else if (square < x) {
-        sqrt = m;
-        l = m + 1;
+        sqrt = mid;
+        break;
       } else {
-        r = m - 1;
+        if (x > square) {
+          sqrt = mid;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
       }
     }
     return sqrt;
@@ -31,17 +35,6 @@ class Solution {
 //     for (int i = 2; i <= x; i++) {
 //       if ((i * i) > x) {
 //         return i-1;
-//       }
-//     }
-//     return 1;
-//   }
-// }
-
-// class Solution {
-//   int mySqrt(int x) {
-//     for (int i = x; i >= 1; i--) {
-//       if ((i * i) <= x) {
-//         return i;
 //       }
 //     }
 //     return 1;

@@ -26,13 +26,13 @@ void main(List<String> args) {
 }
 
 class Solution {
-  List<List<int>> permute(List<int> nums) {
+  List<List<int>> permute(final List<int> nums) {
     List<List<int>> permutations = [];
     permutation(permutations, nums, 0);
     return permutations;
   }
 
-  void permutation(List<List<int>> permutations, List<int> nums, int starIndex) {
+  void permutation(final List<List<int>> permutations, final List<int> nums, final int starIndex) {
     if(starIndex == nums.length) {
       permutations.add(List.of(nums));
     } else {
@@ -48,8 +48,8 @@ class Solution {
     }
   }
 
-  void swap(List<int> nums, int i, int j) {
-    int tmp = nums[i];
+  void swap(final List<int> nums, final int i, final int j) {
+    final int tmp = nums[i];
     nums[i] = nums[j];
     nums[j] = tmp;
   }

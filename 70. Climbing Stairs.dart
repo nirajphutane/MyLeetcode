@@ -9,7 +9,7 @@ void main() {
 class Solution {
 
   final Map<int, int> memo = {};
-  int climbStairs(int n) {
+  int climbStairs(final int n) {
     if (memo.containsKey(n)) {
       return memo[n]!;
     }

@@ -1,43 +1,30 @@
 
 void main() {
   print(Solution().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3)); // true
-  print(Solution().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13));// false
+  print(Solution().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 20)); // true
+  print(Solution().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13)); // false
 }
 
 class Solution {
-  bool searchMatrix(List<List<int>> matrix, int target) {
-    for (List<int> row in matrix) {
-      final length = row.length-1;
-      if (row[0] <= target && target <= row[length]) {
-        int l = 0, h = length;
-        while (l <= h) {
-          final int m = (h+l) ~/ 2;
-          if (target == m) {
+  bool searchMatrix(final List<List<int>> matrix, final int target) {
+    for (int i = 0; i < matrix.length; i++) {
+      final int size = matrix[i].length-1;
+      if (target >= matrix[i][0] && target <= matrix[i][size]) {
+        int low = 0, high = size;
+        while (low <= high) {
+          final int mid = (low + high) ~/ 2;
+          if (matrix[i][mid] == target) {
             return true;
-          } else if (target < m) {
-            h = m-1;
+          }
+          if (matrix[i][mid] < target) {
+            low = mid + 1;
           } else {
-            l = m+1;
+            high = mid - 1;
           }
         }
+        break;
       }
     }
     return false;
   }
 }
-
-// class Solution {
-//   bool searchMatrix(List<List<int>> matrix, int target) {
-//     for (List<int> row in matrix) {
-//       final length = row.length-1;
-//       if (row[0] <= target && target <= row[length]) {
-//         for (int i = 0; i <= length; i++) {
-//           if (row[i] == target) {
-//             return true;
-//           }
-//         }
-//       }
-//     }
-//     return false;
-//   }
-// }

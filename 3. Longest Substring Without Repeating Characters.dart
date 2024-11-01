@@ -1,37 +1,23 @@
+
 import 'dart:math';
 
-void main(){
-  String s = 'abcabcbb';// 3
-  // s = 'bbbbb';  // 1
-  // s = 'pwwkew'; // 3
-
-  print(Solution().lengthOfLongestSubstring(s));
+void main() {
+  print(Solution().lengthOfLongestSubstring('abcabcbb')); // 3
+  print(Solution().lengthOfLongestSubstring('bbbbb'));  // 1
+  print(Solution().lengthOfLongestSubstring('pwwkew')); // 3
 }
 
 class Solution {
-  int lengthOfLongestSubstring(String s) {
-
-    int length = 0;
-    Set<String> set = {};
-    int j = 0;
-    for(int i = 0; i < s.length; i++) {
-      if(set.contains(s[i])) {
-        while(j < i){
-          set.remove(s[j]);
-          j++;
-        }
-
-        // while(set.contains(s[j])){
-        //   set.remove(s[j]);
-        //   j++;
-        // }
+  int lengthOfLongestSubstring(final String word) {
+    int lengthOfLongestSubstring = 0;
+    final Set<String> substring = {};
+    for (int i = 0; i < word.length; i++) {
+      if (substring.contains(word[i])) {
+        lengthOfLongestSubstring = max(lengthOfLongestSubstring, substring.length);
+        substring.clear();
       }
-      set.add(s[i]);
-      length = max(length, set.length);
-
-      // length = max(length, i-j+1);
+      substring.add(word[i]);
     }
-
-    return length;
+    return lengthOfLongestSubstring;
   }
 }

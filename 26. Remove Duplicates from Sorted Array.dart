@@ -1,31 +1,27 @@
-void main() {
 
-  List<int> nums = [0,0,1,1,1,2,2,3,3,4];
-  print(Solution().removeDuplicates(nums));
+void main() {
+  print(Solution().removeDuplicates([1,1,2]));  // [1,2,_]
+  print(Solution().removeDuplicates([0,0,1,1,1,2,2,3,3,4]));  // [0,1,2,3,4,_,_,_,_,_]
 }
 
 class Solution {
   int removeDuplicates(List<int> nums) {
-    int j = 1;
-    for (int i = 1; i < nums.length; i++) {
-      if (nums[i] != nums[j]) {
-        j++;
-      }
-      nums[j] = nums[i];
+    final int maxUniques = 1;
+
+    if (nums.length < maxUniques) {
+      return nums.length;
     }
-    return j;
+
+    int count = maxUniques;
+    for (int i = maxUniques; i < nums.length; i++) {
+      if (nums[count - maxUniques] != nums[i]) {
+        nums[count] = nums[i];
+        count++;
+      }
+    }
+
+    print(nums);
+
+    return count;
   }
 }
-
-// class Solution {
-//   int removeDuplicates(List<int> nums) {
-//     int j = 1;
-//     for(int i = 1; i < nums.length; i++) {
-//       if(nums[i-1] != nums[i]) {
-//         nums[j] = nums[i];
-//         j++;
-//       }
-//     }
-//     return j;
-//   }
-// }

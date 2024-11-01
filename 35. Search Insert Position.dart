@@ -1,34 +1,36 @@
 void main() {
-
-  List<int> nums = [1,3,5,6];
-  int target = 5;
-  print(Solution().searchInsert(nums, target));
+  print(Solution().searchInsert([1,3,5,6], 5));  // 2
+  print(Solution().searchInsert([1,3,5,6], 2));  // 1
+  print(Solution().searchInsert([1,3,5,6], 7));  // 4
 }
 
 class Solution {
-  // O(log(n))
-  int searchInsert(List<int> nums, int target) {
-    int low = 0, high = nums.length -1;
-    while(low <= high) {
-      int mid = (low + high) ~/ 2;
-      if(target == nums[mid]) {
+  int searchInsert(final List<int> nums, final int target) {
+
+    int low = 0, high = nums.length-1;
+    while (low <= high) {
+      final int mid = (low + high) ~/2;
+      if (nums[mid] == target) {
         return mid;
-      } else if(target < nums[mid]) {
-        high = mid -1;
+      }
+
+      if (nums[mid] < target) {
+        low = mid + 1;
       } else {
-        low = mid +1;
+        high = mid - 1;
       }
     }
+
     return low;
   }
 
-  // O(n)
-  // int searchInsert(List<int> nums, int target) {
-  //   int i;
-  //   for(i = 0; i < nums.length; i++) {
+  // int searchInsert(final List<int> nums, final int target) {
+  //   int i = 0;
+  //   while(i < nums.length) {
   //     if(target <= nums[i]) {
   //       return i;
   //     }
+  //     i++;
   //   }
   //   return i++;
   // }

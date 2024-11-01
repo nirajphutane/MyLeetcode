@@ -7,19 +7,19 @@ void main() {
 class Solution {
   List<List<int>> combine(final int n, final int k) {
     final List<List<int>> powerSet = [];
-    _subSets(1, n, k, [], powerSet);
+    _subsets(n, k, 1, powerSet, []);
     return powerSet;
   }
 
-  void _subSets(final int index, final int n, final int k, final List<int> tmp, final List<List<int>> powerSet) {
+  void _subsets(final int n, final int k, final int index, final List<List<int>> powerSet, final List<int> tmp) {
     if (tmp.length == k) {
-      powerSet.add(List.of(tmp));
+      powerSet.add(List.from(tmp));
       return;
     }
 
     for (int i = index; i <= n; i++) {
       tmp.add(i);
-      _subSets(i+1, n, k, tmp, powerSet);
+      _subsets(n, k, i+1, powerSet, tmp);
       tmp.removeLast();
     }
   }

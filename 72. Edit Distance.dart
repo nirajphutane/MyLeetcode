@@ -25,62 +25,23 @@ void main() {
 //  b 4|3|
 
 class Solution {
-  int minDistance(final String str1, final String str2) {
-
-    final int length1 = str1.length;
-    final int length2 = str2.length;
-
-    final List<List<int>> dp = List.generate(length1+1, (index) => List.generate(length2+1, (index) => 0));
-    for (int r = 0; r <= length1; r++) {
-      for (int c = 0; c <= length2; c++) {
-        if (r == 0) {
-          dp[0][c] = c;
-        } else if (c == 0) {
-          dp[r][0] = r;
+  int minDistance(final String word1, final String word2) {
+    final List<List<int>> matrix = List.generate(word1.length, (index) => List.generate(word2.length, (index) => 0));
+    for (int row = 0; row < word1.length; row++) {
+      for (int column = 0; column < word2.length; column++) {
+        if (row == 0) {
+          matrix[row][column] = column;
+        } else if (column == 0) {
+          matrix[row][column] = row;
         } else {
-          if (str1[r-1] == str2[c-1]) {
-            dp[r][c] = dp[r-1][c-1];
+          if (word1[row-1] == word2[column-1]) {
+            matrix[row][column] = matrix[row-1][column-1];
           } else {
-            dp[r][c] = 1 + [dp[r-1][c-1], dp[r-1][c], dp[r][c-1]].reduce(min);
+            matrix[row][column] = [matrix[row-1][column], matrix[row][column-1], matrix[row-1][column-1]].reduce(min) + 1;
           }
         }
       }
     }
-
-    return dp[length1][length2];
+    return matrix[word1.length-1][word2.length-1];
   }
 }
-
-// class Solution {
-//
-//   int minDistance(String word1, String word2) {
-//     final List<List<int>> memo = List.generate(
-//         word1.length+1, (index) => List.generate(word2.length+1, (index) => -1)
-//     );
-//     return findMinDistance(word1, word2, word1.length, word2.length, memo);
-//   }
-//
-//   int findMinDistance(final String word1, final String word2, final int i, final int j, final List<List<int>> memo) {
-//     if (i == 0) {
-//       return j;
-//     }
-//
-//     if (j == 0) {
-//       return i;
-//     }
-//
-//     if (memo[i][j] != -1) {
-//       return memo[i][j];
-//     }
-//
-//     if (word1[i-1] == word2[j-1]) {
-//       memo[i][j] = findMinDistance(word1, word2, i-1, j-1, memo);
-//     } else {
-//       final int insert = findMinDistance(word1, word2, i-1, j, memo);
-//       final int delete = findMinDistance(word1, word2, i, j-1, memo);
-//       final int replace = findMinDistance(word1, word2, i-1, j-1, memo);
-//       memo[i][j] = 1 +  [insert, delete, replace].reduce(min);
-//     }
-//     return memo[i][j];
-//   }
-// }

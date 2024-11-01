@@ -1,27 +1,38 @@
+
 void main() {
-  ListNode? listNode = ListNode(1, ListNode(2, ListNode(3, ListNode(4))));
-  listNode = Solution().swapPairs(listNode); // 2,1,4,3
-  while(listNode != null) {
-    print(listNode.val);
-    listNode = listNode.next;
-  }
+  print(Solution().swapPairs(ListNode(1, ListNode(2, ListNode(3, ListNode(4))))).toString()); // head --> 2 --> 1 --> 4 --> 3 --> null
+  print(Solution().swapPairs(null).toString()); // null
+  print(Solution().swapPairs(ListNode(1)).toString());  // head --> 1 --> null
 }
 
 class ListNode {
   int val;
   ListNode? next;
   ListNode([this.val = 0, this.next]);
+
+  @override
+  String toString() {
+    ListNode? head = this;
+    String list = '';
+    list += 'head --> ';
+    while (head != null) {
+      list += '${head.val} --> ';
+      head = head.next;
+    }
+    list += 'null';
+    return list;
+  }
 }
 
 class Solution {
-  ListNode? swapPairs(ListNode? head) {
+  ListNode? swapPairs(final ListNode? head) {
 
-    ListNode dummy = ListNode(0, head);
-    ListNode? current = dummy;
+    final ListNode dummyNode = ListNode(0, head);
+    ListNode? current = dummyNode;
 
-    while(current?.next != null && current?.next?.next != null) {
-      ListNode? first = current?.next;
-      ListNode? second = first?.next;
+    while (current?.next != null && current?.next?.next != null) {
+      final ListNode? first = current?.next;
+      final ListNode? second = first?.next;
 
       first?.next = second?.next;
       second?.next = first;
@@ -30,6 +41,6 @@ class Solution {
       current = current?.next?.next;
     }
 
-    return dummy.next;
+    return dummyNode.next;
   }
 }

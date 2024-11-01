@@ -1,24 +1,24 @@
+
 import 'dart:math';
 
-void main(){
-  final List<int> height = [1,8,6,2,5,4,8,3,7];
-
-  print(Solution().maxArea(height)); // 49
+void main() {
+  print(Solution().maxArea([1,8,6,2,5,4,8,3,7])); // 49
+  print(Solution().maxArea([1,1])); // 1
 }
 
 class Solution {
-  int maxArea(List<int> height) {
-    int i = 0, j = height.length-1;
+  int maxArea(final List<int> height) {
+    int maxArea = 0;
 
-    int maxArea = 0, area, idealHeight;
-    while(i < j) {
-      idealHeight = min(height[i], height[j]);
-      area = idealHeight * (j - i);
+    int low = 0, high = height.length-1;
+    while (low < high) {
+      final int minHeight = min(height[low], height[high]);
+      final int area = minHeight * (high - low);
       maxArea = max(maxArea, area);
-      if(height[i] < height[j]) {
-        i++;
+      if (height[low] < height[high]) {
+        low++;
       } else {
-        j--;
+        high--;
       }
     }
 
