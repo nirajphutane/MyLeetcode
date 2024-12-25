@@ -29,24 +29,21 @@ class ListNode {
 class Solution {
   ListNode? removeNthFromEnd(ListNode? head, int n) {
     ListNode? headNode = head;
+
     int length = 0;
     while (headNode != null) {
-      length++;
       headNode = headNode.next;
+      length++;
     }
 
     if (n == length) {
-      head = head?.next;
-      return head;
+      return head?.next;
     }
 
     headNode = head;
-    int i = 1;
-    while (i < length-n) {
+    for (int i = 1; i < length-n; i++) {
       headNode = headNode?.next;
-      i++;
     }
-
     headNode?.next = headNode.next?.next;
 
     return head;

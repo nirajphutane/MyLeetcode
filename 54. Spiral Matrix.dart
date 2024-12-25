@@ -44,3 +44,44 @@ class Solution {
     return spiral;
   }
 }
+
+// class Solution {
+//   List<int> spiralOrder(final List<List<int>> matrix) {
+//
+//     final List<int> spiral = [];
+//
+//     int left = 0, right = matrix.length-1, top = 0, bottom = matrix[0].length-1;
+//
+//     while(left <= right && top <= bottom) {
+//       for (int c = top; c <= bottom; c++) {
+//         spiral.add(matrix[left][c]);
+//       }
+//       left++;
+//
+//       for (int r = left; r <= right; r++) {
+//         spiral.add(matrix[r][bottom]);
+//       }
+//       bottom--;
+//
+//       if (spiral.length >= (matrix.length + matrix[0].length)) {
+//         break;
+//       }
+//
+//       for (int c = bottom; c >= top; c--) {
+//         spiral.add(matrix[right][c]);
+//       }
+//       right--;
+//
+//       // if (left >= right && top >= bottom) {
+//       //   break;
+//       // }
+//
+//       for (int r = right; r >= left; r--) {
+//         spiral.add(matrix[r][top]);
+//       }
+//       top++;
+//     }
+//
+//     return spiral;
+//   }
+// }

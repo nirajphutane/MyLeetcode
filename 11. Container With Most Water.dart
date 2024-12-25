@@ -8,12 +8,9 @@ void main() {
 
 class Solution {
   int maxArea(final List<int> height) {
-    int maxArea = 0;
-
-    int low = 0, high = height.length-1;
+    int maxArea = 0, low = 0, high = height.length-1;
     while (low < high) {
-      final int minHeight = min(height[low], height[high]);
-      final int area = minHeight * (high - low);
+      final int area = min(height[low], height[high]) * (high - low);
       maxArea = max(maxArea, area);
       if (height[low] < height[high]) {
         low++;
@@ -21,7 +18,6 @@ class Solution {
         high--;
       }
     }
-
     return maxArea;
   }
 }

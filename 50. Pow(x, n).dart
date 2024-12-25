@@ -6,27 +6,47 @@ void main() {
 }
 
 class Solution {
-  double myPow(final double x, final int n) {
-    if (n < 0) {
-      return 1 / _power(x, n * -1);
-    } else {
-      return _power(x, n);
-    }
-  }
+  double myPow(final double x, final int n) => n.isNegative? 1 / _myPow(x, n.abs()): _myPow(x, n);
 
-  double _power(final double x, final int n) {
+  double _myPow(final double x, final int n) {
     if (x == 0) {
       return 0;
     }
 
-    if (n == 0) {
-      return 1;
+    if (n == 1) {
+      return x;
     }
 
     if (n.isEven) {
-      return myPow(x * x, n ~/ 2);
+      return _myPow(x * x, n ~/2);
     } else {
-      return x * myPow(x * x, n ~/ 2);
+      return _myPow(x * x, n ~/2) * x;
     }
   }
 }
+
+// class Solution {
+//   double myPow(final double x, final int n) {
+//     if (n < 0) {
+//       return 1 / _power(x, n * -1);
+//     } else {
+//       return _power(x, n);
+//     }
+//   }
+//
+//   double _power(final double x, final int n) {
+//     if (x == 0) {
+//       return 0;
+//     }
+//
+//     if (n == 0) {
+//       return 1;
+//     }
+//
+//     if (n.isEven) {
+//       return myPow(x * x, n ~/ 2);
+//     } else {
+//       return x * myPow(x * x, n ~/ 2);
+//     }
+//   }
+// }

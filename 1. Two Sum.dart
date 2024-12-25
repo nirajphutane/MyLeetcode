@@ -13,8 +13,7 @@ class Solution {
       if (map.containsKey(nums[i])) {
         break;
       }
-      map[target - nums[i]] = i;
-      i++;
+      map[target - nums[i]] = i++;
     }
     return [map[nums[i]]!, i];
   }

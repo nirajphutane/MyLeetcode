@@ -10,15 +10,30 @@ void main() {
 
 class Solution {
   bool canJump(final List<int> nums) {
-    int jumpAt = nums.length -1;
-    int distance = 0;
+
+    int jumpAt = nums.length-1;
     for (int i = nums.length-2; i >= 0; i--) {
-      distance++;
       if (nums[i] >= jumpAt-i) {
-        jumpAt = jumpAt - distance;
-        distance = 0;
+        jumpAt = i;
       }
     }
+
     return jumpAt == 0;
   }
 }
+
+
+// class Solution {
+//   bool canJump(final List<int> nums) {
+//     int jumpAt = nums.length -1;
+//     int distance = 0;
+//     for (int i = nums.length-2; i >= 0; i--) {
+//       distance++;
+//       if (nums[i] >= jumpAt-i) {
+//         jumpAt -= distance;
+//         distance = 0;
+//       }
+//     }
+//     return jumpAt == 0;
+//   }
+// }

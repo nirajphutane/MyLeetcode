@@ -1,5 +1,4 @@
 
-
 import 'dart:math';
 
 void main() {
@@ -10,13 +9,24 @@ void main() {
 
 class Solution {
   int maxSubArray(final List<int> nums) {
-
-    int sum = 0, maxSum = 0;
-    for (int n in nums) {
-      sum = max(n, sum+n);
+    int maxSum = nums.first, sum = maxSum;
+    for (int i = 1; i < nums.length; i++) {
+      sum = max(nums[i], sum+nums[i]);
       maxSum = max(sum, maxSum);
     }
-
     return maxSum;
   }
 }
+
+// class Solution {
+//   int maxSubArray(final List<int> nums) {
+//
+//     int sum = 0, maxSum = 0;
+//     for (int n in nums) {
+//       sum = max(n, sum+n);
+//       maxSum = max(sum, maxSum);
+//     }
+//
+//     return maxSum;
+//   }
+// }

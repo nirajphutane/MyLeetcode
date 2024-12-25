@@ -38,4 +38,31 @@ class Solution {
     countAndSay += '$count${string[string.length-1]}';
     return countAndSay;
   }
+
+  // String _countAndSay(final String str) {
+  //   String countAndSay = '';
+  //   int count = 1;
+  //   for(int i = 1; i < str.length; i++) {
+  //     if (str[i] == str[i-1]) {
+  //       count++;
+  //     } else {
+  //       countAndSay += '$count${str[i-1]}';
+  //       count = 1;
+  //     }
+  //   }
+  //   return countAndSay += '$count${str[str.length-1]}';
+  // }
+
+  // String _countAndSay(final String str) {
+  //   String say = '';
+  //   int i = 0, j = 0;
+  //   while(j < str.length) {
+  //     if (str[j] != str[i]) {
+  //       say += '${j-i}${str[i]}';
+  //       i = j;
+  //     }
+  //     j++;
+  //   }
+  //   return say += '${j-i}${str[i]}';
+  // }
 }

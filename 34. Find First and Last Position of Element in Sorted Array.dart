@@ -6,12 +6,10 @@ void main() {
 }
 
 class Solution {
-  List<int> searchRange(final List<int> nums, final int target) {
-    return [
-      _binarySearch(nums, target, true),
-      _binarySearch(nums, target, false)
-    ];
-  }
+  List<int> searchRange(final List<int> nums, final int target) => [
+    _binarySearch(nums, target, true),
+    _binarySearch(nums, target, false)
+  ];
 
   int _binarySearch(final List<int> nums, final int target, final bool applyLeftBias) {
 
